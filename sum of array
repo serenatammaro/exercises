@@ -1,0 +1,13 @@
+let array = [1, 2, 3, 4, 5];
+
+function sum(array) {
+    let length = array.length;
+    let result = 0;
+    for (let i = 0; i < length; i++) {
+        result += array[i];
+    }
+    return result;
+}
+
+console.log(sum(array));
+console.log(array[1]);
