@@ -1,0 +1,9 @@
+function arrayToList(newArray) {
+    let list = null;
+    for (let i = newArray.length - 1; i >= 0; i--) {
+        list = { value: newArray[i], rest: list }
+
+    }
+    return list;
+}
+console.log(arrayToList([10, 20, 30]));
