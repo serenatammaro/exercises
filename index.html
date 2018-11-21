@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <title>
+        Calculator
+    </title>
+
+</head>
+
+<body>
+    <div>
+        <input type="text" id="display">
+    </div>
+    <div>
+        <button type="button" onclick="digit(1)">1</button>
+        <button type="button" onclick="digit(2)">2</button>
+        <button type="button" onclick="digit(3)">3</button>
+        <button type="button" onclick="digit('+')">+</button>
+    </div>
+    <div>
+        <button type="button" onclick="digit(4)">4</button>
+        <button type="button" onclick="digit(5)">5</button>
+        <button type="button" onclick="digit(6)">6</button>
+        <button type="button" onclick="digit('-')">-</button>
+    </div>
+    <div>
+        <button type="button" onclick="digit(7)">7</button>
+        <button type="button" onclick="digit(8)">8</button>
+        <button type="button" onclick="digit(9)">9</button>
+        <button type="button" onclick="digit('*')">*</button>
+    </div>
+    <div>
+        <button type="button" onclick="digit(0)">0</button>
+        <button type="button" onclick="clearField('clearing')">C</button>
+        <button type="button" onclick="digit('.')">.</button>
+        <button type="button" onclick="equalSign('=')">=</button>
+    </div>
+    <script type="text/javascript">
+        let arrayDisplay = [];
+        let result = "";
+        let number = "";
+        let currentNumber = 0;
+        function digit(value) {
+            if (typeof value == "number") {
+            number += value;
+            console.log("number" + number);
+            console.log("current number" + currentNumber);
+            document.getElementById("display").value = number;
+            }
+            if (typeof value)
+            if (value ==  '+') {
+                currentNumber = currentNumber + Number(number);
+                number = ""; 
+                document.getElementById("display").value = "+";
+                console.log("sum");
+                console.log("current number" + currentNumber);
+            }
+            //console.log(value);
+            //document.getElementById("display").value = value;
+        }
+        function equalSign(equal) {
+            document.getElementById("display").value = currentNumber;
+            console.log("current number" + currentNumber);
+        }
+        function clearField(something) {
+            let clearDisplay = "";
+            number = "";
+            document.getElementById("display").value = clearDisplay;
+            console.log("clearing");
+        }
+        
+    </script>
+</body>
+
+</html>
