@@ -42,19 +42,21 @@
         let currentNumber = 0;
         function digit(value) {
             if (typeof value == "number") {
-            number += value;
-            console.log("number" + number);
-            console.log("current number" + currentNumber);
-            document.getElementById("display").value = number;
-            }
-            if (typeof value)
-            if (value ==  '+') {
-                currentNumber = currentNumber + Number(number);
-                number = ""; 
-                document.getElementById("display").value = "+";
-                console.log("sum");
+                number += value;
+                console.log("number" + number);
                 console.log("current number" + currentNumber);
+                document.getElementById("display").value = number;
             }
+            if (typeof value) {
+                 if (value == '+') {
+                    currentNumber = currentNumber + Number(number);
+                    number = "";
+                    document.getElementById("display").value = "+";
+                    console.log("sum");
+                    console.log("current number" + currentNumber);
+                }
+            }
+               
             //console.log(value);
             //document.getElementById("display").value = value;
         }
@@ -68,7 +70,7 @@
             document.getElementById("display").value = clearDisplay;
             console.log("clearing");
         }
-        
+
     </script>
 </body>
 
