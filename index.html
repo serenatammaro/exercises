@@ -38,37 +38,59 @@
     <script type="text/javascript">
         let arrayDisplay = [];
         let result = "";
-        let number = "";
+        let accum = "";
+        let operation = "";
         let currentNumber = 0;
         function digit(value) {
             if (typeof value == "number") {
-                number += value;
-                console.log("number" + number);
-                console.log("current number" + currentNumber);
-                document.getElementById("display").value = number;
+                accum += value;
+                console.log("accumulator " + accum);
+                console.log("current number " + currentNumber);
+                document.getElementById("display").value = accum;
             }
-            if (typeof value) {
-                 if (value == '+') {
-                    currentNumber = currentNumber + Number(number);
-                    number = "";
+            if (typeof value == "string") {
+                if (value == '+') {
+                    operation = value;
+                    currentNumber = currentNumber + Number(accum);
+                    accum = "";
                     document.getElementById("display").value = "+";
-                    console.log("sum");
+                    console.log(operation);
+                    console.log("current number" + currentNumber);
+                }
+                if (value == '*') {
+                    operation = value;
+                    document.getElementById("display").value = "*";
+                    console.log(operation);
+                    if (currentNumber == "0") {
+                        return currentNumber;
+                    } else  if (currentNumber != "0") {
+                        currentNumber = currentNumber * Number(accum);
+                        return currentNumber;
+                    }
+                    accum = "";
                     console.log("current number" + currentNumber);
                 }
             }
-               
+
             //console.log(value);
             //document.getElementById("display").value = value;
         }
         function equalSign(equal) {
+            if (operation == '+') {
+                currentNumber += Number(accum);
+            }
             document.getElementById("display").value = currentNumber;
-            console.log("current number" + currentNumber);
+            console.log("current number " + currentNumber);
+            currentNumber = 0;
+            accum = "";
+            operation = "";
         }
         function clearField(something) {
-            let clearDisplay = "";
-            number = "";
+            let clearDisplay = "0";
+            currentNumber = 0;
             document.getElementById("display").value = clearDisplay;
             console.log("clearing");
+            console.log("current number" + currentNumber);
         }
 
     </script>
