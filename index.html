@@ -61,23 +61,46 @@
                     operation = value;
                     document.getElementById("display").value = "*";
                     console.log(operation);
-                    if (currentNumber == "0") {
+                    if (currentNumber == 0) {
+                        currentNumber = Number(accum);
+                        accum = "";
+                        console.log("current number1 " + currentNumber);
+                        console.log("accum1 " + accum);
                         return currentNumber;
-                    } else  if (currentNumber != "0") {
-                        currentNumber = currentNumber * Number(accum);
-                        return currentNumber;
+                    } else {
+                      currentNumber = currentNumber * Number(accum);
+                      accum = "";
+                      console.log("current number" + currentNumber);
+                         return currentNumber;
                     }
-                    accum = "";
                     console.log("current number" + currentNumber);
+                }
+                if (value == '-') {
+                    if (currentNumber == 0) {
+                        currentNumber = Number(accum);
+                        accum = "";
+                        console.log("currentNumber" + currentNumber);
+                        return currentNumber;
+                    } else {
+                    currentNumber = currentNumber - Number(accum);
+                    accum = "";
+                    console.log("current number - " + currentNumber);
+                    return currentNumber;
+                    }
                 }
             }
 
-            //console.log(value);
-            //document.getElementById("display").value = value;
         }
         function equalSign(equal) {
             if (operation == '+') {
                 currentNumber += Number(accum);
+            }
+            if (operation == '*') {
+                currentNumber = currentNumber * Number(accum);
+            }
+            if (operation == '-') {
+                currentNumber = currentNumber - Number(accum);
+                return currentNumber;
             }
             document.getElementById("display").value = currentNumber;
             console.log("current number " + currentNumber);
@@ -87,6 +110,7 @@
         }
         function clearField(something) {
             let clearDisplay = "0";
+            accum = "";
             currentNumber = 0;
             document.getElementById("display").value = clearDisplay;
             console.log("clearing");
