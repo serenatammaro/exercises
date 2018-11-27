@@ -12,6 +12,13 @@
         <input type="text" id="display">
     </div>
     <div>
+            <button type="button"></button>        
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+        <button type="button" onclick="digit('/')">/</button>
+    </div>
+    <div>
         <button type="button" onclick="digit(1)">1</button>
         <button type="button" onclick="digit(2)">2</button>
         <button type="button" onclick="digit(3)">3</button>
@@ -42,7 +49,7 @@
         let operation = "";
         let currentNumber = 0;
         function digit(value) {
-            if (typeof value == "number") {
+            if (typeof value == "number" || value == '.') {
                 accum += value;
                 console.log("accumulator " + accum);
                 console.log("current number " + currentNumber);
@@ -51,7 +58,7 @@
             if (typeof value == "string") {
                 if (value == '+') {
                     operation = value;
-                    currentNumber = currentNumber + Number(accum);
+                    currentNumber = currentNumber + parseFloat(accum);
                     accum = "";
                     document.getElementById("display").value = "+";
                     console.log(operation);
@@ -62,7 +69,7 @@
                     document.getElementById("display").value = "*";
                     console.log(operation);
                     if (currentNumber == 0) {
-                        currentNumber = Number(accum);
+                        currentNumber = parseFloat(accum);
                         accum = "";
                         console.log("current number1 " + currentNumber);
                         console.log("accum1 " + accum);
@@ -76,8 +83,9 @@
                     console.log("current number" + currentNumber);
                 }
                 if (value == '-') {
+                    operation = value;
                     if (currentNumber == 0) {
-                        currentNumber = Number(accum);
+                        currentNumber = parseFloat(accum);
                         accum = "";
                         console.log("currentNumber" + currentNumber);
                         return currentNumber;
@@ -88,19 +96,32 @@
                     return currentNumber;
                     }
                 }
+                if (value == '/') {
+                    operation = value;
+                    if (currentNumber == 0) {
+                        currentNumber = parseFloat(accum);
+                        accum = "";
+                    } else {
+                    currentNumber = currentNumber / Number(accum);
+                    accum = "";
+                    }
+                    console.log("/")
+                }
             }
 
         }
         function equalSign(equal) {
             if (operation == '+') {
-                currentNumber += Number(accum);
+                currentNumber += parseFloat(accum);
             }
             if (operation == '*') {
-                currentNumber = currentNumber * Number(accum);
+                currentNumber = currentNumber * parseFloat(accum);
             }
             if (operation == '-') {
-                currentNumber = currentNumber - Number(accum);
-                return currentNumber;
+                currentNumber = currentNumber - parseFloat(accum);
+            }
+            if (operation == '/') {
+                currentNumber = currentNumber / parseFloat(accum);
             }
             document.getElementById("display").value = currentNumber;
             console.log("current number " + currentNumber);
