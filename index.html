@@ -60,22 +60,7 @@
                     sumNumbers();
                 }
                 if (value == '*') {
-                    operation = value;
-                    document.getElementById("display").value = "*";
-                    console.log(operation);
-                    if (currentNumber == 0) {
-                        currentNumber = parseFloat(accum);
-                        accum = "";
-                        console.log("current number1 " + currentNumber);
-                        console.log("accum1 " + accum);
-                        return currentNumber;
-                    } else {
-                        currentNumber = currentNumber * Number(accum);
-                        accum = "";
-                        console.log("current number" + currentNumber);
-                        return currentNumber;
-                    }
-                    console.log("current number" + currentNumber);
+                    multiplyNumbers();
                 }
                 if (value == '-') {
                     operation = value;
@@ -114,6 +99,25 @@
             console.log(operation);
             console.log("current number" + currentNumber);
         }
+        function multiplyNumbers() {
+            operation = "*";
+            document.getElementById("display").value = "*";
+            console.log(operation);
+            if (currentNumber == 0) {
+                currentNumber = parseFloat(accum);
+                accum = "";
+                console.log("current number1 " + currentNumber);
+                console.log("accum1 " + accum);
+                return currentNumber;
+            } else {
+                currentNumber = currentNumber * Number(accum);
+                accum = "";
+                console.log("current number" + currentNumber);
+                return currentNumber;
+            }
+            console.log("current number" + currentNumber);
+        }
+
 
         function equalSign(equal) {
             if (operation == '+') {
