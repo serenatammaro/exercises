@@ -63,18 +63,7 @@
                     multiplyNumbers();
                 }
                 if (value == '-') {
-                    operation = value;
-                    if (currentNumber == 0) {
-                        currentNumber = parseFloat(accum);
-                        accum = "";
-                        console.log("currentNumber" + currentNumber);
-                        return currentNumber;
-                    } else {
-                        currentNumber = currentNumber - Number(accum);
-                        accum = "";
-                        console.log("current number - " + currentNumber);
-                        return currentNumber;
-                    }
+                    subtractNumbers();
                 }
                 if (value == '/') {
                     operation = value;
@@ -116,6 +105,21 @@
                 return currentNumber;
             }
             console.log("current number" + currentNumber);
+        }
+        function subtractNumbers() {
+            operation = "-";
+            if (currentNumber == 0) {
+                currentNumber = parseFloat(accum);
+                accum = "";
+                document.getElementById("display").value = "-"
+                console.log("currentNumber" + currentNumber);
+                return currentNumber;
+            } else {
+                currentNumber = currentNumber - Number(accum);
+                accum = "";
+                console.log("current number - " + currentNumber);
+                return currentNumber;
+            }
         }
 
 
