@@ -1,40 +1,97 @@
 <html>
 
 <head>
+    <style>
+        .calc-button {
+            max-width: 40px;
+            height: 40px;
+            flex: 1;
+            font-size: 24px;
+        }
+        .digit-button {
+            background-color: gray; 
+            color: brown;
+            flex: 1;
+            font-size: 24px;
+        }
+        .operation-button {
+            background-color: orange;
+            color: white;
+            flex: 1;
+            font-size: 24px;
+        }
+        .placeholder-button {
+            font-size: 24px;
+            flex: 1;
+        }
+        .row {
+            display: flex;
+            align-items: right;
+        }
+        
+    </style>
     <title>
         Calculator
     </title>
-
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
-<body>
+<body style="background-color: powderblue" ;>
     <div>
-        <input type="text" id="display">
+        <input type="text" id="display" style="background-color: black; color: white; font-size: 24px;">
     </div>
-    <div>
-        <button type="button" onclick="digit(1)">1</button>
-        <button type="button" onclick="digit(2)">2</button>
-        <button type="button" onclick="digit(3)">3</button>
-        <button type="button" onclick="digit('+')">+</button>
+    <div class="row">
+        <div class="calc-button placeholder-button"></div>
+        <div class="calc-button placeholder-button"></div>
+        <div class="calc-button placeholder-button"></div>
+        <input type="button" class="calc-button operation-button" onclick="digit('/')" value="/"></input>
     </div>
-    <div>
-        <button type="button" onclick="digit(4)">4</button>
-        <button type="button" onclick="digit(5)">5</button>
-        <button type="button" onclick="digit(6)">6</button>
-        <button type="button" onclick="digit('-')">-</button>
+    <div class="row">
+        <button class="calc-button digit-button" onclick="digit(1)">1</button>
+        <button class="calc-button digit-button" onclick="digit(2)">2</button>
+        <button class="calc-button digit-button" onclick="digit(3)">3</button>
+        <button class="calc-button operation-button" onclick="digit('+')">+</button>
     </div>
-    <div>
-        <button type="button" onclick="digit(7)">7</button>
-        <button type="button" onclick="digit(8)">8</button>
-        <button type="button" onclick="digit(9)">9</button>
-        <button type="button" onclick="digit('*')">*</button>
+    <div class="row">
+        <button class="calc-button digit-button" onclick="digit(4)">4</button>
+        <button class="calc-button digit-button" onclick="digit(5)">5</button>
+        <button class="calc-button digit-button" onclick="digit(6)">6</button>
+        <button class="calc-button operation-button" onclick="digit('-')">-</button>
     </div>
-    <div>
-        <button type="button" onclick="digit(0)">0</button>
-        <button type="button" onclick="clearField('clearing')">C</button>
-        <button type="button" onclick="digit('.')">.</button>
-        <button type="button" onclick="equalSign('=')">=</button>
+    <div class="row">
+        <button type="button" style="background-color: gray; color: brown;" onclick="digit(7)">7</button>
+        <button type="button" style="background-color: gray; color: brown;" onclick="digit(8)">8</button>
+        <button type="button" style="background-color: gray; color: brown;" onclick="digit(9)">9</button>
+        <button type="button" style="background-color: orange; color: white;" onclick="digit('*')">*</button>
     </div>
+    <div class="row">
+        <button type="button" style="background-color: gray; color: brown;" onclick="digit(0)">0</button>
+        <button type="button" style="background-color: gray; color: brown;" onclick="clearField('clearing')">C</button>
+        <button type="button" style="background-color: gray; color: brown;" onclick="digit('.')">.</button>
+        <button type="button" style="background-color: orange; color: white;" onclick="equalSign('=')">=</button>
+    </div>
+    <div id="app">
+        <div>
+                {{message}}
+        </div>
+        <button v-on:click="increase">Increase</button>
+        
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                counter: 0,
+                message: 'Hello Vue!'
+            },
+            methods: {
+                increase: function () {
+                    this.counter++
+                    this.message = "Counter: " + this.counter
+                }
+            }
+        })
+    </script>
     <script type="text/javascript">
         let arrayDisplay = [];
         let result = "";
@@ -42,7 +99,7 @@
         let operation = "";
         let currentNumber = 0;
         function digit(value) {
-            if (typeof value == "number") {
+            if (typeof value == "number" || value == '.') {
                 accum += value;
                 console.log("accumulator " + accum);
                 console.log("current number " + currentNumber);
@@ -50,57 +107,87 @@
             }
             if (typeof value == "string") {
                 if (value == '+') {
-                    operation = value;
-                    currentNumber = currentNumber + Number(accum);
-                    accum = "";
-                    document.getElementById("display").value = "+";
-                    console.log(operation);
-                    console.log("current number" + currentNumber);
+                    sumNumbers();
                 }
                 if (value == '*') {
-                    operation = value;
-                    document.getElementById("display").value = "*";
-                    console.log(operation);
-                    if (currentNumber == 0) {
-                        currentNumber = Number(accum);
-                        accum = "";
-                        console.log("current number1 " + currentNumber);
-                        console.log("accum1 " + accum);
-                        return currentNumber;
-                    } else {
-                      currentNumber = currentNumber * Number(accum);
-                      accum = "";
-                      console.log("current number" + currentNumber);
-                         return currentNumber;
-                    }
-                    console.log("current number" + currentNumber);
+                    multiplyNumbers();
                 }
                 if (value == '-') {
-                    if (currentNumber == 0) {
-                        currentNumber = Number(accum);
-                        accum = "";
-                        console.log("currentNumber" + currentNumber);
-                        return currentNumber;
-                    } else {
-                    currentNumber = currentNumber - Number(accum);
-                    accum = "";
-                    console.log("current number - " + currentNumber);
-                    return currentNumber;
-                    }
+                    subtractNumbers();
                 }
+                if (value == '/') {
+                    divideNumbers();
+                }
+
             }
 
         }
+        function sumNumbers() {
+            operation = "+";
+            currentNumber = currentNumber + parseFloat(accum);
+            accum = "";
+            document.getElementById("display").value = "+";
+            console.log(operation);
+            console.log("current number" + currentNumber);
+        }
+        function multiplyNumbers() {
+            operation = "*";
+            document.getElementById("display").value = "*";
+            console.log(operation);
+            if (currentNumber == 0) {
+                currentNumber = parseFloat(accum);
+                accum = "";
+                console.log("current number1 " + currentNumber);
+                console.log("accum1 " + accum);
+                return currentNumber;
+            } else {
+                currentNumber = currentNumber * Number(accum);
+                accum = "";
+                console.log("current number" + currentNumber);
+                return currentNumber;
+            }
+            console.log("current number" + currentNumber);
+        }
+        function subtractNumbers() {
+            operation = "-";
+            if (currentNumber == 0) {
+                currentNumber = parseFloat(accum);
+                accum = "";
+                document.getElementById("display").value = "-"
+                console.log("currentNumber" + currentNumber);
+                return currentNumber;
+            } else {
+                currentNumber = currentNumber - Number(accum);
+                accum = "";
+                console.log("current number - " + currentNumber);
+                return currentNumber;
+            }
+        }
+        function divideNumbers() {
+            operation = "/";
+            if (currentNumber == 0) {
+                currentNumber = parseFloat(accum);
+                accum = "";
+            } else {
+                currentNumber = currentNumber / Number(accum);
+                accum = "";
+            }
+            console.log("/")
+        }
+
+
         function equalSign(equal) {
             if (operation == '+') {
-                currentNumber += Number(accum);
+                currentNumber += parseFloat(accum);
             }
             if (operation == '*') {
-                currentNumber = currentNumber * Number(accum);
+                currentNumber = currentNumber * parseFloat(accum);
             }
             if (operation == '-') {
-                currentNumber = currentNumber - Number(accum);
-                return currentNumber;
+                currentNumber = currentNumber - parseFloat(accum);
+            }
+            if (operation == '/') {
+                currentNumber = currentNumber / parseFloat(accum);
             }
             document.getElementById("display").value = currentNumber;
             console.log("current number " + currentNumber);
