@@ -1,0 +1,126 @@
+//vuejs button onclick
+
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .item {
+            display: flex;
+            flex-grow: 1;
+            
+            
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            float: left;
+            padding: 30px;
+        }
+
+        .addRemove-button {
+            display: flex;
+
+        /*max-width: 40px;
+            height: 40px;*/
+            flex: 1;
+            /*font-size: 24px;*/
+
+    }
+    </style>
+    <title> To Do List
+    </title>
+</head>
+
+<body>
+    <div class="column">
+
+        <h2>Add things to do:</h2>
+        <p>
+            <input type="text" class="item" id="addToList">
+        </p>
+        <p>
+            <button class="item" onclick="addItem()">Add</button>
+        </p>
+    </div>
+    <div class="column">
+        <h2>Things I did (delete things from list)</h2>
+        <input type="text" class="item" id="deleteThings">
+        <button class="item" onclick="deleteItem()">Delete from list</button>
+    </div>
+    <div class="column" id="app">
+        <span v-bind:title="tooltip">
+            {{message}}
+
+        </span>
+        <button onclick="addExclamationMark('!')">!</button>
+
+        <h2>To Do List:</h2>
+        <p id="listToDo">
+
+        </p>
+        <ol>
+            <li v-for = "todo in todos">
+                {{todo.text}}
+
+            </li>
+        </ol>
+
+    </div>
+
+    <script type="text/javascript">
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: "Hello",
+                tooltip: "this is tooltip",
+                todos: [
+                    {text: "Groceries"},
+                    {text: "Laundry"}
+                ]
+                
+            }
+
+        })
+        function addExclamationMark(exclamationMark) {
+            app.message += exclamationMark;
+
+
+
+        }
+
+
+
+
+        let listOfThings = [];
+
+        function addItem() {
+            let x = document.getElementById("addToList").value;
+            listOfThings.push(x + "<br>");
+
+            document.getElementById("listToDo").innerHTML = listOfThings;
+
+            console.log(x);
+            console.log("cc");
+            return listOfThings;
+        }
+
+        function deleteItem() {
+            let y = document.getElementById("deleteThings").value;
+            let index = listOfThings.indexOf(y);
+            console.log(index);
+            
+/*
+            for (let i = 0; i <= listOfThings.length; i++) {
+                if (y === listOfThings[i]) {
+
+                    console.log("delete" + y);
+                   listOfThings.splice(i, 1);
+                    document.getElementById("listToDo").innerHTML = listOfThings;
+                }
+            }*/
+        }
+    </script>
+</body>
+
+</html>
