@@ -1,8 +1,130 @@
-<html> 
+<html>
+
 <head>
-<title> My First Vue!
-</title>
+    <title> This is the title of my First Vue!
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
 </head>
+
 <body>
+
+    <template>
+
+    </template>
+    <div id="app1">
+        <p>This is paragraph app1 </p>
+
+        <p>{{message}}</p>
+
+
+
+
+    </div>
+    <div id="app2">
+        <p>This is paragraph v bind title</p>
+        <span v-bind:title="message">"Hover over to see dinamically changing bond title"</span>
+    </div>
+
+    <div id="app3">
+        <p>This paragraph is for v if</p>
+        <p v-if="seen">Now you can see me</p>
+
+    </div>
+
+    <div id="app4">
+        <p>This paragraph is for v for</p>
+        <ol>
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+        </ol>
+    </div>
+    <div id="app5">
+
+        <p>{{message}}</p>
+
+        <button v-on:click="reverseMessage">Reverse Message!</button>
+
+
+
+    </div>
+
+
+
+    <div id="app6">
+
+        <p>this is v model div</p>
+
+        <p>{{message}}</p>
+
+        <input v-model="message">
+
+
+
+    </div>
+
+
+    <script>
+
+        var app = new Vue({
+            el: "#app1",
+
+            data: {
+                message: "Hello app1!"
+            }
+
+        })
+
+        var app2 = new Vue({
+            el: "#app2",
+            data: {
+                message: "you loaded this page on" + " " + new Date().toLocaleDateString()
+
+            }
+        })
+
+        var app3 = new Vue({
+            el: "#app3",
+            data: {
+                seen: true
+            }
+        })
+
+        var app4 = new Vue({
+            el: "#app4",
+            data: {
+                todos: [
+                    { text: "Learn Vue" },
+                    { text: "Tidy up" },
+                    { text: "Grocery" }
+
+                ]
+            }
+        })
+
+        const app5 = new Vue({
+            el: "#app5",
+
+            data: {
+                message: "reverse this message"
+            },
+            methods: {
+                reverseMessage: function () {
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        })
+
+        const app6 = new Vue({
+            el: "#app6",
+            data: {
+                message: "Hello Vue v-model"
+                }
+        })
+    </script>
 </body>
+
 </html>
