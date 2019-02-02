@@ -37,10 +37,10 @@
 
         <h2>Add things to do:</h2>
         <p>
-            <input type="text" class="item" id="addToList">
+            <input v-model="text" type="text" class="item">
         </p>
         <p>
-            <button class="item" onclick="addItem()">Add</button>
+            <!--<button class="item" onclick="AddThing()">Add</button>-->
         </p>
     </div>
     <div class="column">
@@ -82,28 +82,26 @@
             }
 
         })
-        function addExclamationMark(exclamationMark) {
-            app.message += exclamationMark;
-
-
-
-        }
+        //const list
+        //function addExclamationMark(exclamationMark) {
+          //  app.message += exclamationMark;
+        //}
 
 
 
 
         let listOfThings = [];
 
-        function addItem() {
-            let x = document.getElementById("addToList").value;
-            listOfThings.push(x + "<br>");
+        //function addItem() {
+        //    let x = document.getElementById("addToList").value;
+        //    listOfThings.push(x + "<br>");
 
-            document.getElementById("listToDo").innerHTML = listOfThings;
+          //  document.getElementById("listToDo").innerHTML = listOfThings;
 
-            console.log(x);
-            console.log("cc");
-            return listOfThings;
-        }
+            //console.log(x);
+            //console.log("cc");
+            //return listOfThings;
+        //}
 
         function deleteItem() {
             let y = document.getElementById("deleteThings").value;
