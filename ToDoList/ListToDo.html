@@ -1,0 +1,41 @@
+<html>
+
+<head> To Do List
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    .mainColumns {
+        display: flex;
+        flex-direction: column;
+        float: left;
+        padding: 30px;
+    }
+
+    </style>
+    <title> To do List </title>
+</head>
+
+<body>
+    <div id="listInput" class="mainColumns">
+        <h2>Add things to the List</h2>
+        <input v-model="listInput">
+        <p>{{listInput}}</p>
+    </div>
+    <div class="mainColumns">
+        <h2>Delete off list</h2>
+    </div>
+    <div class="mainColumns">
+        <h2>To Do List</h2>
+    </div>
+
+    <script>
+    var listInput = new Vue ({
+        el: "#listInput",
+        data: {
+            listInput: "Things to do"
+        }
+    })
+    </script>
+</body>
+
+</html>
