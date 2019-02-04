@@ -7,8 +7,13 @@
 
 <body>
     <div id="root">
-        <input type="text" id="input" v-model="message">
-        <p> The value is {{ message }} </p>
+        <ol>
+            <li v-for="name in names" v-text="name">
+              
+            </li>
+        </ol>
+        <input type="text" id="input">
+        <button id="addItem" onclick="addToDo()">add</button>
     </div>
     
 
@@ -16,13 +21,18 @@
 
        
 
-        let root = new Vue({
+        var app = new Vue({
             el: "#root",
             data: {
-                message: "ciao"
+                names: ["Joe", "Mary", "Jac", "Marty"]
             }
             
         })
+
+        function addToDo() {
+            var newItem = document.getElementById("input");
+            app.names.push(newItem);
+        }
     </script>
 </body>
 
