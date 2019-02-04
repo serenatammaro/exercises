@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title> Vue try </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div> Here goes ListToDo </div>
+    <div id="ListToDo">
+        <ol>
+            <li v-for="todo in todos">
+                {{todo.title}}
+            </li>
+        </ol>
+    </div>
+    <script>
+    const ListToDo = new Vue ({
+        el: "#ListToDo",
+        data: {
+            todos: [
+
+                {
+                    id: 1,
+                    title: "Learn Vue"
+                },
+                {
+                    id: 2,
+                    title: "Finsih ListToDo"
+                }
+            ]
+        }
+    })
+    </script>
+
+</body>
+
+</html>

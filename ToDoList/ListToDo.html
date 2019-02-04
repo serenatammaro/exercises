@@ -16,10 +16,11 @@
 </head>
 
 <body>
-    <div id="listInput" class="mainColumns">
+    <div id="listToDo" class="mainColumns">
         <h2>Add things to the List</h2>
-        <input v-model="listInput" placeholder="ya">
-        <p>{{listInput}}</p>
+        <input type="text"  placeholder="things to do here" v-model="listToDo" v-on:keyup.enter="addToDo">
+        <button> Add </button>
+        <p>{{listToDo}}</p>
     </div>
     <div class="mainColumns">
         <h2>Delete off list</h2>
@@ -27,28 +28,45 @@
     <div id="listToDo" class="mainColumns">
         <h2>To Do List</h2>
         <ol>
-            <li v-for="todo in todos">
-                {{todo.text}}
+            <li v-for="todo in todos" :key="todo.id">
+                {{todo.title}}
             </li>
         </ol>
     </div>
 
     <script>
-    var listInput = new Vue ({
+    /*var listInput = new Vue ({
         el: "#listInput",
         data: { 
-            listInput: "Things to do"
+            listInput: ""
            
         }
-    })
+    })*/
 
     var listToDo = new Vue ({
         el: "#listToDo",
         data: {
+            
             todos: [
-                {text: "Learn VUe"}
-            ]
-        }
+                {
+                    id: 1,
+                    title: "finish to do app",
+                    completed: false
+                },
+                {
+                    id: 2,
+                    title: "do dinner",
+                    completed: false
+                }
+
+            ],
+            listToDo: ""
+        },
+        /*methods: {
+            addToDo() {
+                alert("add")
+            }
+        }*/
     })
     </script>
 </body>
