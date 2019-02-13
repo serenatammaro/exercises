@@ -12,8 +12,8 @@
               
             </li>
         </ol>
-        <input type="text" id="input">
-        <button id="addItem" onclick="addToDo()">add</button>
+        <input type="text" id="input" v-model="newName">
+        <button v-on:click="addName">add</button>
     </div>
     
 
@@ -24,7 +24,15 @@
         var app = new Vue({
             el: "#root",
             data: {
+                newName: "",
                 names: ["Joe", "Mary", "Jac", "Marty"]
+            },
+            methods: {
+                addName() {
+                    this.names.push(this.newName);
+                    this.newName="";
+                }
+
             }
             
         })
