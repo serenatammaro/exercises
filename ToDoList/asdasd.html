@@ -1,0 +1,65 @@
+<html>
+
+<head>
+
+    <style>
+       .isLoading {background: red}
+       .buttonValue {background: #cccc}
+    </style>
+
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <ol>
+            <li v-for="name in names" v-text="name">
+
+            </li>
+        </ol>
+        <input type="text" id="input" v-model="newName">
+        
+            <button :class="{isLoading: trueFalse}" v-on:click="addName" @click="toggleClass">add</button>
+            <button :disabled="{buttonValue: abledDisabled}" @click="toggleToggle">toggle me</button>
+        
+    </div>
+
+
+    <script>
+
+
+
+        var app = new Vue({
+            el: "#root",
+            data: {
+                abledDisabled: false,
+                trueFalse: false,
+                className: "color-red",
+                newName: "",
+                names: ["Joe", "Mary", "Jac", "Marty"]
+            },
+            methods: {
+                toggleToggle() {
+                    this.abledDisabled = true;
+                },
+                toggleClass() {
+                    this.trueFalse = true;
+                },
+                addName() {
+                    this.names.push(this.newName);
+                    this.newName = "";
+                }
+
+            }
+
+        })
+
+        function addToDo() {
+            var newItem = document.getElementById("input");
+            app.names.push(newItem);
+        }
+    </script>
+</body>
+
+</html>
