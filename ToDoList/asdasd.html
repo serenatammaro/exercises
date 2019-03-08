@@ -7,34 +7,79 @@
 
 <body>
     <div id="root">
+        <h1> List of Names</h1>
         <ol>
             <li v-for="name in names" v-text="name">
-              
+
             </li>
         </ol>
+
         <input type="text" id="input" v-model="newName">
         <button v-on:click="addName">add</button>
+        
+        <h2>All tasks</h2>
+        <ol>
+            <li v-for="task in tasks" v-text="task.description">
+
+            </li>
+        </ol>
+        <input type="text">
+        <button v-onclick="addTask">add task</button>
+
+        <h3>Incompleted tasks</h3>
+        <ol>
+            <li v-for="task in incompletedTasks" v-text="task.description">
+
+            </li>
+        </ol>
+       
+        
+
+        <h4>Completed tasks</h4>
+            <ol>
+                <li v-for="task in completedTasks" v-text="task.description">
+
+                </li>
+            </ol>
+         
+            
     </div>
-    
+
 
     <script>
 
-       
+
 
         var app = new Vue({
             el: "#root",
             data: {
+                tasks: [
+                    { description: "task 1", completed: false },
+                    { description: "task 2", completed: false },
+                    { description: "task 3", completed: true },
+                    { description: "task 4", completed: false },
+                    { description: "task 5", completed: true }
+
+                ],
                 newName: "",
                 names: ["Joe", "Mary", "Jac", "Marty"]
             },
             methods: {
                 addName() {
                     this.names.push(this.newName);
-                    this.newName="";
+                    this.newName = "";
                 }
 
+            },
+            computed: {
+                incompletedTasks() {
+                    return this.tasks.filter(task => ! task.completed);
+                },
+                completedTasks() {
+                    return this.tasks.filter(task => task.completed);
+                }
             }
-            
+
         })
 
         function addToDo() {
