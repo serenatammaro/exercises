@@ -12,10 +12,10 @@
         <input type="text" id="display">
     </div>
     <div>
-            <button type="button"></button>        
-            <button type="button"></button>
-            <button type="button"></button>
-            <button type="button"></button>
+        <button type="button"></button>
+        <button type="button"></button>
+        <button type="button"></button>
+        <button type="button"></button>
         <button type="button" onclick="digit('/')">/</button>
     </div>
     <div>
@@ -57,59 +57,75 @@
             }
             if (typeof value == "string") {
                 if (value == '+') {
-                    operation = value;
-                    currentNumber = currentNumber + parseFloat(accum);
-                    accum = "";
-                    document.getElementById("display").value = "+";
-                    console.log(operation);
-                    console.log("current number" + currentNumber);
+                    sumNumbers();
                 }
                 if (value == '*') {
-                    operation = value;
-                    document.getElementById("display").value = "*";
-                    console.log(operation);
-                    if (currentNumber == 0) {
-                        currentNumber = parseFloat(accum);
-                        accum = "";
-                        console.log("current number1 " + currentNumber);
-                        console.log("accum1 " + accum);
-                        return currentNumber;
-                    } else {
-                      currentNumber = currentNumber * Number(accum);
-                      accum = "";
-                      console.log("current number" + currentNumber);
-                         return currentNumber;
-                    }
-                    console.log("current number" + currentNumber);
+                    multiplyNumbers();
                 }
                 if (value == '-') {
-                    operation = value;
-                    if (currentNumber == 0) {
-                        currentNumber = parseFloat(accum);
-                        accum = "";
-                        console.log("currentNumber" + currentNumber);
-                        return currentNumber;
-                    } else {
-                    currentNumber = currentNumber - Number(accum);
-                    accum = "";
-                    console.log("current number - " + currentNumber);
-                    return currentNumber;
-                    }
+                    subtractNumbers();
                 }
                 if (value == '/') {
-                    operation = value;
-                    if (currentNumber == 0) {
-                        currentNumber = parseFloat(accum);
-                        accum = "";
-                    } else {
-                    currentNumber = currentNumber / Number(accum);
-                    accum = "";
-                    }
-                    console.log("/")
+                    divideNumbers();
                 }
+
             }
 
         }
+        function sumNumbers() {
+            operation = "+";
+            currentNumber = currentNumber + parseFloat(accum);
+            accum = "";
+            document.getElementById("display").value = "+";
+            console.log(operation);
+            console.log("current number" + currentNumber);
+        }
+        function multiplyNumbers() {
+            operation = "*";
+            document.getElementById("display").value = "*";
+            console.log(operation);
+            if (currentNumber == 0) {
+                currentNumber = parseFloat(accum);
+                accum = "";
+                console.log("current number1 " + currentNumber);
+                console.log("accum1 " + accum);
+                return currentNumber;
+            } else {
+                currentNumber = currentNumber * Number(accum);
+                accum = "";
+                console.log("current number" + currentNumber);
+                return currentNumber;
+            }
+            console.log("current number" + currentNumber);
+        }
+        function subtractNumbers() {
+            operation = "-";
+            if (currentNumber == 0) {
+                currentNumber = parseFloat(accum);
+                accum = "";
+                document.getElementById("display").value = "-"
+                console.log("currentNumber" + currentNumber);
+                return currentNumber;
+            } else {
+                currentNumber = currentNumber - Number(accum);
+                accum = "";
+                console.log("current number - " + currentNumber);
+                return currentNumber;
+            }
+        }
+        function divideNumbers() {
+            operation = "/";
+            if (currentNumber == 0) {
+                currentNumber = parseFloat(accum);
+                accum = "";
+            } else {
+                currentNumber = currentNumber / Number(accum);
+                accum = "";
+            }
+            console.log("/")
+        }
+
+
         function equalSign(equal) {
             if (operation == '+') {
                 currentNumber += parseFloat(accum);
